@@ -1,1 +1,1 @@
-# GAN-Mednist-
+# GAN-Mednist
