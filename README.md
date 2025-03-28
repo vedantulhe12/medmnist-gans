@@ -1,73 +1,66 @@
-# GAN Loss Function Comparison
+# GAN-Based Medical Image Generation using MedMNIST
 
-This project compares three Generative Adversarial Network (GAN) loss functions—LS-GAN, WGAN, and WGAN-GP—using the **MedMNIST** dataset. The models are evaluated based on **Inception Score (IS)** and **Fréchet Inception Distance (FID)** to measure the quality of generated images.
+This project explores Generative Adversarial Networks (GANs) for medical image generation using the ChestMNIST dataset from MedMNIST. Three GAN variants are implemented and compared: **LS-GAN, WGAN, and WGAN-GP**.
 
-## 📌 Project Overview
-- Train and compare LS-GAN, WGAN, and WGAN-GP.
-- Evaluate image generation performance using IS and FID.
-- Visualize training progress using TensorBoard.
-- Implement memory-efficient training strategies.
+## Project Overview
+- **Dataset**: ChestMNIST (28x28 grayscale medical images)
+- **GAN Variants**: LS-GAN, WGAN, WGAN-GP
+- **Evaluation Metrics**:
+  - **Inception Score (IS)**: Measures diversity and quality of generated images.
+  - **Fréchet Inception Distance (FID)**: Measures similarity between real and generated images.
 
-## 📂 Dataset
-- **MedMNIST** dataset, which contains medical images for generative tasks.
-- The dataset is preprocessed and normalized before training.
+## Results
+### Generated Images
+LS-GAN:
+![LS-GAN](https://github.com/samisafk/GAN-Mednist/blob/main/generated/LS-GAN_epoch_49.png)
 
-## 🛠️ Technologies Used
-- **Python**
-- **PyTorch**
-- **TorchMetrics** (for IS and FID computation)
-- **TensorBoard** (for visualization)
-- **Flask** (for potential deployment)
+WGAN:
+![WGAN](https://github.com/samisafk/GAN-Mednist/blob/main/generated/WGAN_epoch_49.png)
 
-## 🚀 Model Training
-Each GAN model is trained for at least **50 epochs** with the following hyperparameters:
-- **Batch size**: 64
-- **Learning rate**: 0.0002
-- **Optimizer**: Adam (with weight clipping for WGAN)
-- **Gradient penalty** (for WGAN-GP)
+WGAN-GP:
+![WGAN-GP](https://github.com/samisafk/GAN-Mednist/blob/main/generated/WGAN-GP_epoch_49.png)
 
-## 📊 Results
-| Model   | Inception Score (IS) | FID Score |
-|---------|---------------------|-----------|
-| LS-GAN  | 1.71                | 344.26    |
-| WGAN    | 2.02                | 337.78    |
-| WGAN-GP | 1.88                | 339.98    |
+### Quantitative Evaluation
+| Model   | Inception Score | FID  |
+|---------|----------------|------|
+| LS-GAN  | 1.71           | 344.27 |
+| WGAN    | 2.02           | 337.78 |
+| WGAN-GP | 1.89           | 339.99 |
 
-**Interpretation:**
-- **WGAN** achieves the best performance but all models need improvement.
-- Low IS values suggest poor diversity and realism.
-- High FID values indicate a significant gap between generated and real images.
+## Setup and Installation
+### Prerequisites
+Ensure you have the following installed:
+- Python 3.x
+- PyTorch
+- torchvision
+- torchmetrics
+- medmnist
+- tqdm
+- tensorboard
 
-## 🔧 How to Run
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/samisafk/GAN-Mednist.git
-   cd gan-loss-comparison
-   ```
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Train a GAN model:
-   ```bash
-   python train.py --model wgan
-   ```
-4. Compute IS and FID:
-   ```bash
-   python evaluate.py --model wgan
-   ```
-5. Visualize results using TensorBoard:
-   ```bash
-   tensorboard --logdir=runs
-   ```
+### Installation
+Clone the repository and install dependencies:
+```bash
+ git clone https://github.com/samisafk/GAN-Mednist.git
+ cd GAN-Mednist
+ pip install -r requirements.txt
+```
 
-## 🔥 Future Improvements
-- Increase training epochs for better results.
-- Optimize hyperparameters and model architecture.
-- Experiment with StyleGAN or BigGAN for enhanced performance.
+## Training the GANs
+Run the training script to train all three models:
+```bash
+python train.py
+```
+The trained models will be saved in the `models/` directory.
 
+## Evaluating the Models
+To compute IS and FID scores:
+```bash
+python evaluate.py
+```
 
----
-
-💡 **Contributions are welcome!** Feel free to fork, open issues, or submit pull requests. 🚀
+## Acknowledgments
+- **MedMNIST**: A lightweight benchmark for medical image analysis
+- **PyTorch**: Deep learning framework used for training
+- **TorchMetrics**: Used for computing IS and FID scores
 
