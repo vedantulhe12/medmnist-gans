@@ -9,6 +9,20 @@ This project explores Generative Adversarial Networks (GANs) for medical image g
   - **Inception Score (IS)**: Measures diversity and quality of generated images.
   - **Fréchet Inception Distance (FID)**: Measures similarity between real and generated images.
 
+## Technologies Used
+- **Python**
+- **PyTorch**
+- **TorchMetrics** (for IS and FID computation)
+- **TensorBoard** (for visualization)
+- **Flask** (for potential deployment)
+
+## Model Training
+Each GAN model is trained for at least 50 epochs with the following hyperparameters:
+- **Batch size**: 64
+- **Learning rate**: 0.0002
+- **Optimizer**: Adam (with weight clipping for WGAN)
+- **Gradient penalty** (for WGAN-GP)
+
 ## Results
 ### Generated Images
 LS-GAN:
@@ -26,6 +40,11 @@ WGAN-GP:
 | LS-GAN  | 1.71           | 344.27 |
 | WGAN    | 2.02           | 337.78 |
 | WGAN-GP | 1.89           | 339.99 |
+
+**Interpretation**:
+- **WGAN** achieves the best performance but all models need improvement.
+- Low IS values suggest poor diversity and realism.
+- High FID values indicate a significant gap between generated and real images.
 
 ## Setup and Installation
 ### Prerequisites
